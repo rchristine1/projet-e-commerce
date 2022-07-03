@@ -11,13 +11,11 @@ function WelcomePage(props) {
         let url = "http://localhost:3004/welcome-page/"
         fetch(url, {
             method: 'GET',
-            //credentials:'include'
             credentials: 'include'
         })
             .then(response => response.json())
             .then(jsonBackendData => {
                 console.log("PageAccueil UserId", jsonBackendData);
-                //setProduct(jsonBackendData);
             }
             )
     }, [])
@@ -64,9 +62,9 @@ function WelcomePage(props) {
                                     <h6 className="text-start">Vert</h6>
                                     <div className="mb-3 "></div>
                                     <p className="text-start">
-                                        <img className="img-fluid"
-                                            src="https://th.bing.com/th/id/R.6ecc191ff2ffb317a84e7c01641eeb51?rik=DGBepIti72WMvA&pid=ImgRaw&r=0" />
-                                    </p>
+                                        <img className="img-fluid"                                            
+                                            src="/WV.png"/>
+                                   </p>    
                                 </div>
                             </div>
                         </div>
@@ -76,8 +74,8 @@ function WelcomePage(props) {
                                     <h6 className="text-start">Bleu</h6>
                                     <div className="mb-3 "></div>
                                     <p className="text-start">
-                                        <img className="img-fluid"
-                                            src="https://th.bing.com/th/id/R.12d5e0372a99bb1d5b038f1689e21228?rik=EXv2RU3ldmn%2b8A&pid=ImgRaw&r=0" />
+                                        <img className="img-fluid"                                           
+                                            src="/WB.png"/>
                                     </p>
                                 </div>
                             </div>
@@ -88,8 +86,8 @@ function WelcomePage(props) {
                                     <h6 className="text-start">Rose</h6>
                                     <div className="mb-3 "></div>
                                     <p className="text-start">
-                                        <img className="img-fluid"
-                                            src="https://s1.1zoom.me/b5371/435/Texture_Pink_color_550607_2560x1440.jpg" />
+                                        <img className="img-fluid"                                            
+                                            src="/WP.png"/>
                                     </p>
                                 </div>
                             </div>

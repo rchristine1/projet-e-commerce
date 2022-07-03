@@ -7,6 +7,7 @@ import { Search } from 'react-bootstrap-icons';
 let iconStyles = { fontSize: "1.85em" };
 
 export default function Header(props) {
+
   return (
     <header className="App-header">
       <div className="container m-0 p-0">
@@ -23,12 +24,17 @@ export default function Header(props) {
             <div className="container m-0 p-0">
               <div className="row">
                 <div className="col-md-12 text-end">
-                  <Search className="m-2" style={iconStyles} />
-                  <Person className="m-2 text-decoration-none" style={iconStyles}
-                    onClick={event => props.setCurrentPage({ "login": "null" })}
-                  />
-                  <Handbag className="m-2" style={iconStyles} />
-                  <Heart className="m-2" style={iconStyles} />
+                  <Search className="m-2 text-secondary" style={iconStyles} />
+                  {props.isLogged === true ?
+                    (<Person className="m-2 text-primary" style={iconStyles} aria-label="Login"
+                      onClick={event => props.setCurrentPage({ "login": "null" })}
+                    />) :
+                    (<Person className="m-2" id="iconLogin" style={iconStyles} aria-label="Login"
+                      onClick={event => props.setCurrentPage({ "login": "null" })}
+                    />)
+                  }
+                  <Handbag className="m-2 text-secondary" style={iconStyles} />
+                  <Heart className="m-2 text-secondary" style={iconStyles} />
                 </div>
               </div>
             </div>

@@ -9,7 +9,8 @@ function toDoWhenFormSubmitted(event, setProducts) {
         firstname: document.getElementById('exampleInputFirstName1').value,
         lastname: document.getElementById('exampleInputLastName1').value,
         email: document.getElementById('exampleInputEmail1').value,
-        password: document.getElementById('exampleInputPassword1').value
+        password: document.getElementById('exampleInputPassword1').value,
+        admin: false
     }
     console.log("register", user)
     let options = {
@@ -35,7 +36,6 @@ function Register(props) {
     return (
         <div className="App">
             <h2> Créer un compte </h2>
-
             <section id="content" className="page-content">
                 <div className="row">
                     <div className="col-md-3"></div>
@@ -64,7 +64,7 @@ function Register(props) {
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1" />
-                                </div>                                
+                                </div>
                                 <button type="submit" className="btn btn-secondary" > Submit </button>
                             </form>
                             <div className="col-md-3"></div>

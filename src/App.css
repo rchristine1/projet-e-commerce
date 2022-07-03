@@ -72,6 +72,14 @@
     font-style:italic;
 }
 
-/*input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}*/
+#iconLogin:hover{
+  cursor:pointer;
+  transform:scale(1.2);
+}
+
+.Product:hover{
+  cursor:pointer;
+  transform:scale(1.08);
+}
+
+

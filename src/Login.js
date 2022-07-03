@@ -1,35 +1,40 @@
 import React from 'react';
 
-
-function toDoWhenFormSubmitted(event, setProducts) {
-    console.log("toDoWhenFormSubmitted")
-    event.preventDefault()
-    const URL = 'http://localhost:3004/login';
-    let login = {
-        email: document.getElementById('InputEmail1').value,
-        password: document.getElementById('InputPassword1').value
-    }
-    console.log("login", login)
-    let options = {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify(login),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    fetch(URL, options)
-        .then(function (response) {
-            //return response.json()
-        })
-        .then(function (data) {
-            alert("Logged")
-        }
-        );
-}
-
-
 function Login(props) {
+
+    function toDoWhenFormSubmitted(event, setProducts) {
+        console.log("toDoWhenFormSubmitted")
+        event.preventDefault()
+        const URL = 'http://localhost:3004/login';
+        let login = {
+            email: document.getElementById('InputEmail1').value,
+            password: document.getElementById('InputPassword1').value
+        }
+        console.log("login", login)
+        let options = {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(login),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(URL, options)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                console.log("data", data)
+                props.setIsAdmin(data.isadmin)
+                props.setIsLogged(data.islogged)
+                if (data.islogged) {
+                    alert("Vous êtes connecté")
+                } else
+                    alert("Authentification incorrecte")
+
+            }
+            );
+    }
 
     return (
         <div className="App">

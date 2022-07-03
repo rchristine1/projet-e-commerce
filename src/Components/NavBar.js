@@ -11,7 +11,9 @@ export default function NavBar(props) {
     })
       .then(response => response.json())
       .then(jsonBackendData => {
-        alert(`Deconnecté`)
+        alert(`Vous êtes déconnecté`)
+        props.setIsLogged(false)
+        props.setIsAdmin(false)
         props.setCurrentPage({ "welcome": "null" })
       }
       )
@@ -19,27 +21,10 @@ export default function NavBar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <div className="accordion-item">
-          <h3 className="accordion-header" id="headingOne">
-            <button className="accordion-button nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Logout
-            </button>
-          </h3>
-          <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div className="accordion-body">
-              <a className="navbar-brand nav-item"
-                href="#" onClick={event => toDoOnClick(event)}
-              >Logout
-              </a>
-            </div>
-          </div>
-        </div>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <a className="nav-link text-decoration-none"
+          href="#" onClick={event => toDoOnClick(event)}
+        >Logout
+        </a>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -52,7 +37,7 @@ export default function NavBar(props) {
                 onClick={event => props.setCurrentPage({ "products": "null" })}>Produits</a>
             </li>
             <li className="nav-item">
-              <a href="/#" className="nav-link "
+              <a href="#" className="nav-link "
                 onClick={event => props.setCurrentPage({ "cart": "null" })}>Panier
               </a>
             </li>

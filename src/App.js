@@ -15,11 +15,13 @@ import Header from './Components/Header';
 function App() {
 
   let [currentPage, setCurrentPage] = useState({ "welcome": "null" })
+  let [isAdmin, setIsAdmin] = useState(false)
+  let [isLogged, setIsLogged] = useState(false)
 
   return (
     <div className="App">
-      <Header setCurrentPage={setCurrentPage} />
-      <NavBar setCurrentPage={setCurrentPage} />
+      <Header setCurrentPage={setCurrentPage} isLogged={isLogged}/>
+      <NavBar setCurrentPage={setCurrentPage} setIsLogged={setIsLogged} setIsAdmin={setIsAdmin}/>
       {Object.keys(currentPage)[0] === "register" &&
         <div>
           <Register setCurrentPage={setCurrentPage} />
@@ -27,9 +29,13 @@ function App() {
       }
       {Object.keys(currentPage)[0] === "login" &&
         <div>
-          <Login setCurrentPage={setCurrentPage} />
+          <Login
+            setCurrentPage={setCurrentPage}
+            setIsAdmin={setIsAdmin}
+            setIsLogged={setIsLogged}
+          />
         </div>
-      }      
+      }
       {Object.keys(currentPage)[0] === "welcome" &&
         <div>
           <WelcomePage setCurrentPage={setCurrentPage} />
@@ -46,12 +52,19 @@ function App() {
       }
       {Object.keys(currentPage)[0] === "products" &&
         <div>
-          <ProductList setCurrentPage={setCurrentPage} />
+          <ProductList
+            setCurrentPage={setCurrentPage}
+            isAdmin={isAdmin}
+          />
         </div>
       }
       {Object.keys(currentPage)[0] === "details" &&
         <div>
-          <ProductDetails setCurrentPage={setCurrentPage} productId={currentPage.details} />
+          <ProductDetails
+            setCurrentPage={setCurrentPage}
+            productId={currentPage.details}
+            isAdmin={isAdmin}
+          />
         </div>
       }
       {Object.keys(currentPage)[0] === "cart" &&

@@ -20,6 +20,7 @@ function ProductList(props) {
       })
   }, [])
   console.log("ProductList products", products)
+  console.log("isAdmin",props.isAdmin)
 
   let [displayForm, setDisplayForm] = useState("none")
   function onClickAddProduct() {
@@ -36,10 +37,14 @@ function ProductList(props) {
       <div className="ProductList">
         <div className="row">
           <div className="col-md-2">
-            <Button onClick={onClickAddProduct} label="Ajouter un produit" />
+            {props.isAdmin === true &&
+              <Button onClick={onClickAddProduct} label="Ajouter un produit" />
+            }
             {displayForm !== "none" &&
               <ProductAdd setProducts={setProducts} />
             }
+
+
           </div>
           <div className="col-md-8">
             <section className="py-5 mvbckclr">
@@ -49,12 +54,14 @@ function ProductList(props) {
                     <div id={productFromProducts.id}
                       className="Product col-md-4"
                       key={productFromProducts.id}
-                      onClick={event => { props.setCurrentPage({ "details": productFromProducts.id }); 
-                      console.log("productList productID", productFromProducts.id) }}
+                      onClick={event => {
+                        props.setCurrentPage({ "details": productFromProducts.id });
+                        console.log("productList productID", productFromProducts.id)
+                      }}
                     >
                       <div className="card shadow m-2">
                         <div className="card-body">
-                          <h6 className="text-start">Nouveauté</h6>
+                          {/* <h6 className="text-start">Nouveauté</h6> */}
                           <div className="mb-3 "></div>
                           <ProductPreview {...productFromProducts} />
                         </div>
@@ -68,7 +75,7 @@ function ProductList(props) {
           <div className="col-md-2"></div>
         </div>
         <br />
-        <a href="#" onClick={event => props.setCurrentPage({ "welcome": "null" })}>Accueil</a>
+        <a href="/" onClick={event => props.setCurrentPage({ "welcome": "null" })}>Accueil</a>
       </div>
 
     </div>

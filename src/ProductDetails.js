@@ -7,6 +7,7 @@ import { Handbag } from 'react-bootstrap-icons';
 
 function ProductDetails(props) {
     let [product, setProduct] = useState([])
+    console.log("isAdmin", props.isAdmin)
 
     let [displayFormUpdate, setDisplayFormUpdate] = useState("none")
     function onClickUpdateProduct(action) {
@@ -47,6 +48,7 @@ function ProductDetails(props) {
     let inputIdd = "productCartqty" + String(props.productId)
 
 
+
     function onSubmitAddToCart(event) {
         event.preventDefault()
         let url = "http://localhost:3004/addToCart/"
@@ -69,9 +71,11 @@ function ProductDetails(props) {
             <div className="row">
                 <div className="col-md-2">
                     <div className="m-3">
-                        <Button onClick={onClickUpdateProduct}
-                            label="Mettre à jour le produit"
-                        />
+                        {props.isAdmin === true &&
+                            <Button onClick={onClickUpdateProduct}
+                                label="Mettre à jour le produit"
+                            />
+                        }
                         {displayFormUpdate !== "none" &&
                             <ProductUpdate
                                 name={product.name}
@@ -94,7 +98,7 @@ function ProductDetails(props) {
                                 <div className="col-md-7">
                                     <div className="card shadow">
                                         <div className="card-body">
-                                            <h6 className="text-start">Our Services</h6>
+                                            <h4 className="text-start">Un peu de ...  </h4>
                                             <div className="mb-3 "></div>
                                             <p>
                                                 {product.longdescription}
@@ -104,6 +108,7 @@ function ProductDetails(props) {
                                             <img
                                                 src={product.picture}
                                                 className="img-fluid rounded-start image-margin"
+                                                alt={product.description}
                                                 width="200" height="200"
                                             />
                                             <p>
@@ -177,14 +182,15 @@ function ProductDetails(props) {
                 </div>
                 <div className="col-md-2">
                     <div className="m-3">
-                        <Button onClick={onClickDeleteProduct} label="Supprimer le produit" />
+                        {props.isAdmin === true &&
+                            <Button onClick={onClickDeleteProduct} label="Supprimer le produit" />
+                        }
                         {displayFormDelete !== "none" &&
                             <ProductDel id={product.id} />
                         }
                     </div>
                 </div>
             </div>
-
             <a href="#" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</a>
         </div>
 
