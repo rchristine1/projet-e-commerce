@@ -4,6 +4,7 @@ import Button from './Button';
 import ProductUpdate from './ProductUpdate';
 import ProductDel from './ProductDel';
 import { Handbag } from 'react-bootstrap-icons';
+import {Link} from 'react-router-dom';
 
 function ProductDetails(props) {
     let [product, setProduct] = useState([])
@@ -78,14 +79,8 @@ function ProductDetails(props) {
                         }
                         {displayFormUpdate !== "none" &&
                             <ProductUpdate
-                                name={product.name}
-                                description={product.description}
-                                picture={product.picture}
-                                price={product.price}
-                                longdescription={product.longdescription}
-                                origine={product.origine}
-                                quantity={product.quantity}
-                                id={product.id}
+                                setProduct={setProduct}
+                                product={product}
                                 onClick={onClickUpdateForm}
                             />
                         }
@@ -140,7 +135,6 @@ function ProductDetails(props) {
                                                 </div>
                                                 <br />
                                                 <hr />
-
                                                 <form className="row flex-row"
                                                     onSubmit={event => onSubmitAddToCart(event)}
                                                 >
@@ -186,12 +180,13 @@ function ProductDetails(props) {
                             <Button onClick={onClickDeleteProduct} label="Supprimer le produit" />
                         }
                         {displayFormDelete !== "none" &&
-                            <ProductDel id={product.id} />
+                            <ProductDel id={product.id} setCurrentPage={props.setCurrentPage} />
                         }
                     </div>
                 </div>
             </div>
-            <a href="#" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</a>
+            {/* <a href="#" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</a> */}
+            <Link to="/products" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</Link>
         </div>
 
     );

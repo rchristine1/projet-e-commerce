@@ -31,6 +31,7 @@ function CartItem(props) {
     console.log("removeFromCart", id)
     let options = {
       method: 'POST',
+      //method: 'DELETE',
       credentials: 'include',
       body: JSON.stringify(product),
       headers: {
@@ -50,7 +51,6 @@ function CartItem(props) {
   let inputQuantityId = "productCartqty" + props.id
 
   let valueInputQty = props.qty
-  //sert quand la quantite a été changée
   try {
     valueInputQty = document.getElementById(inputQuantityId).value
   } catch (error) {
@@ -69,6 +69,7 @@ function CartItem(props) {
 
     let options = {
       method: 'POST',
+      //method: 'PUT',
       credentials: 'include',
       body: JSON.stringify(product),
       headers: {

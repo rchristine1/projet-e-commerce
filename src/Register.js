@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 function toDoWhenFormSubmitted(event, setProducts) {
@@ -43,9 +44,12 @@ function Register(props) {
                         <section className="register-form">
                             <p>
                                 Vous avez déjà un compte ?
-                                <a href="#" onClick={event => props.setCurrentPage({ "login": "null" })}>
+                                {/* <a href="#" onClick={event => props.setCurrentPage({ "login": "null" })}>
                                     <u>Connectez-vous</u>
-                                </a>
+                                </a> */}
+                                <Link to="/login" onClick={event => props.setCurrentPage({ "login": "null" })}>
+                                    <u>Connectez-vous</u>
+                                </Link>
                             </p>
                             <form onSubmit={(event) => toDoWhenFormSubmitted(event)}>
                                 <div className="mb-3">

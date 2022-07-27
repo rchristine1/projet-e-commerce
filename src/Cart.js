@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import CartItem from './CartItem';
+import { Link } from 'react-router-dom';
 
 // si panier non initialisé => gérer la condition avec un ou
 // gérer expiration de la session
@@ -106,7 +107,8 @@ function Cart(props) {
                 <div className="col-md-2"></div>
             </div >
             <div className="row">
-                <a href="#" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</a>
+                {/* <a href="#" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</a> */}
+                <Link to="/products" onClick={event => props.setCurrentPage({ "products": "null" })}>Liste des produits</Link>
             </div>
         </div >
 

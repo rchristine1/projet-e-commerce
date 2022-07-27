@@ -3,6 +3,11 @@ import React from 'react';
 function toDoWhenInputChanged(event) {
     console.log(event.target.value)
 }
+function cancelLogin() 
+    {
+        return document.getElementById('loginForm').reset();
+    }
+
 
 function toDoWhenFormSubmitted(event, setProducts) {
     console.log("toDoWhenFormSubmitted")
@@ -32,14 +37,16 @@ function toDoWhenFormSubmitted(event, setProducts) {
         .then(function (json) {
             console.log("retour AddProduct json", json.length)
             setProducts(json)
+            cancelLogin() 
         }
         );
 
 }
 
+
 function AddProduct(props) {
     return (
-        <form onSubmit={(event) => toDoWhenFormSubmitted(event, props.setProducts)}>
+        <form id="loginForm" onSubmit={(event) => toDoWhenFormSubmitted(event, props.setProducts)}>
             <div class="m-3">
                 <label htmlFor="productname" className="form-label">Désignation du produit</label>
                 <input id="productname" class="form-control" name="productname" onChange={toDoWhenInputChanged} />

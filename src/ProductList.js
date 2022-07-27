@@ -3,6 +3,7 @@ import ProductPreview from './ProductPreview';
 import React, { useState, useEffect } from 'react';
 import ProductAdd from './ProductAdd';
 import Button from './Button';
+import {Link} from 'react-router-dom';
 
 
 function ProductList(props) {
@@ -20,7 +21,7 @@ function ProductList(props) {
       })
   }, [])
   console.log("ProductList products", products)
-  console.log("isAdmin",props.isAdmin)
+  console.log("isAdmin", props.isAdmin)
 
   let [displayForm, setDisplayForm] = useState("none")
   function onClickAddProduct() {
@@ -51,19 +52,21 @@ function ProductList(props) {
               <div className="container">
                 <div className="row">
                   {products.map((productFromProducts) =>
-                    <div id={productFromProducts.id}
-                      className="Product col-md-4"
-                      key={productFromProducts.id}
-                      onClick={event => {
-                        props.setCurrentPage({ "details": productFromProducts.id });
-                        console.log("productList productID", productFromProducts.id)
-                      }}
-                    >
+                    // <div id={productFromProducts.id}
+                    //   className="Product col-md-4"
+                    //   key={productFromProducts.id}
+                    //   onClick={event => {
+                    //     props.setCurrentPage({ "details": productFromProducts.id });
+                    //     console.log("productList productID", productFromProducts.id)
+                    //    }}                      
+                    //  >
+
+                    <div id={productFromProducts.id} className="Product col-md-4" key={productFromProducts.id}>
                       <div className="card shadow m-2">
                         <div className="card-body">
                           {/* <h6 className="text-start">Nouveauté</h6> */}
                           <div className="mb-3 "></div>
-                          <ProductPreview {...productFromProducts} />
+                          <ProductPreview {...productFromProducts} setCurrentPage={props.setCurrentPage} />
                         </div>
                       </div>
                     </div>
@@ -75,7 +78,8 @@ function ProductList(props) {
           <div className="col-md-2"></div>
         </div>
         <br />
-        <a href="/" onClick={event => props.setCurrentPage({ "welcome": "null" })}>Accueil</a>
+        {/* <a href="/" onClick={event => props.setCurrentPage({ "welcome": "null" })}>Accueil</a> */}
+        <Link to="/" onClick={event => props.setCurrentPage({ "welcome": "null" })}>Accueil</Link>
       </div>
 
     </div>

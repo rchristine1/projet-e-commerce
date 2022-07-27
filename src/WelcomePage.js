@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import WelcomePageSlider from './WelcomePageSlider'
+import { Outlet, Link } from "react-router-dom";
+
 
 
 
@@ -16,6 +18,7 @@ function WelcomePage(props) {
             .then(response => response.json())
             .then(jsonBackendData => {
                 console.log("PageAccueil UserId", jsonBackendData);
+          
             }
             )
     }, [])
@@ -29,10 +32,11 @@ function WelcomePage(props) {
                     <div className="row">
                         <div className="col-md-12">
                             <p>
-                                <a href="#" className="h4 text-decoration-none"
-                                    onClick={event => { props.setCurrentPage({ "products": "null" }) }}>
+                                {/* <a  href="#" className="h4 text-decoration-none "
+                                    onClick={event => { props.setCurrentPage({ "products": "null" })}}>                                   
                                     Découvrez notre sélection de produits
-                                </a>
+                                </a>                                */}
+                                <Link to="/products" className="h4 text-decoration-none " onClick={event => { props.setCurrentPage({ "products": "null" })}}>Découvrez notre sélection de produits</Link>
                             </p>
                         </div>
                     </div>

@@ -1,6 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Login(props) {
+    function cancelLogin() 
+    {
+        return document.getElementById('loginForm').reset();
+    }
 
     function toDoWhenFormSubmitted(event, setProducts) {
         console.log("toDoWhenFormSubmitted")
@@ -10,6 +15,7 @@ function Login(props) {
             email: document.getElementById('InputEmail1').value,
             password: document.getElementById('InputPassword1').value
         }
+        
         console.log("login", login)
         let options = {
             method: 'POST',
@@ -29,6 +35,7 @@ function Login(props) {
                 props.setIsLogged(data.islogged)
                 if (data.islogged) {
                     alert("Vous êtes connecté")
+                    cancelLogin()
                 } else
                     alert("Authentification incorrecte")
 
@@ -44,7 +51,7 @@ function Login(props) {
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
                         <section className="register-form">
-                            <form onSubmit={(event) => toDoWhenFormSubmitted(event)}>
+                            <form id ="loginForm" onSubmit={(event) => toDoWhenFormSubmitted(event)}>
                                 <div className="mb-3">
                                     <label htmlFor="InputEmail1" className="form-label">Email address</label>
                                     <input type="email" className="form-control" id="InputEmail1" aria-describedby="emailHelp" />
@@ -61,9 +68,12 @@ function Login(props) {
                         <hr />
                         <p>
                             Pas encore de compte ?
-                            <a href="#" onClick={event => props.setCurrentPage({ "register": "null" })}>
+                            {/* <a href="#" onClick={event => props.setCurrentPage({ "register": "null" })}>
                                 <u>Créer un compte ici</u>
-                            </a>
+                            </a> */}
+                            <Link to="/register" onClick={event => props.setCurrentPage({ "register": "null" })}>
+                                <u>Créer un compte ici</u>
+                            </Link>
                         </p>
                     </div>
                 </div>
